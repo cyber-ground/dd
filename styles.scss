@@ -332,7 +332,7 @@ html {
     //^ ///////////////////////////////////
     background-image: url('img5/6.jpg');
     background-position: center;
-    background-blend-mode:difference;
+    background-blend-mode: difference;
     @media (max-width: 600px) {
       background-size: cover;
     }
@@ -568,8 +568,9 @@ html {
       width: 100%;
       background-color: #2b2b2b; 
       background-image: url('img5/6.jpg'); 
-      background-blend-mode:darken; 
+      background-blend-mode: darken; 
       background-size: contain;
+      background-attachment: fixed;
       padding-top: 60px; 
       padding-bottom: 180px; //*****
       margin: auto; //* checkLater

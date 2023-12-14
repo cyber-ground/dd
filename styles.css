@@ -668,6 +668,7 @@ body::before {
   background-image: url("img5/6.jpg");
   background-blend-mode: darken;
   background-size: contain;
+  background-attachment: fixed;
   padding-top: 60px;
   padding-bottom: 180px;
   margin: auto;
