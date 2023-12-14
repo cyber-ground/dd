@@ -569,8 +569,8 @@ html {
       background-color: #2b2b2b; 
       background-image: url('img5/6.jpg'); 
       background-blend-mode: darken; 
-      background-size: contain;
-      background-attachment: fixed;
+      // background-size: contain;
+      background-size: cover;
       padding-top: 60px; 
       padding-bottom: 180px; //*****
       margin: auto; //* checkLater
