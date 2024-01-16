@@ -315,26 +315,59 @@ import {console_color,console_red,console_orange,console_yellow,console_green,
 		boxes.forEach(box => { box.textContent = '' });
 	});
 
-	document.addEventListener('scrollend', () => {
-		if(abort) return;
-		scrollend = true;
-		if(scroll) { boxes.forEach(box => { box.style.opacity = .8 }) }
-		timeoutId = setTimeout(() => {
-			const intervalId = setInterval(() => {
-				scrollEnds.push(scrollY);
-				// console.log(scrollEnds); //* log *** //
-				displayMsg();
-				if(scrollEnds.length > 2) {
-					if(scrollEnds[0] === scrollEnds[1] 
-						&& scrollEnds[0] === scrollEnds[2]) {
-						clearInterval(intervalId);
-						resetAll();
-					} else { scrollEnds = []; clearInterval(intervalId); duration = 100 }
-				}
-				if(abort) { clearInterval(intervalId) }
-			}, 1000);
-		}, duration);
-	});
+	//* chrome version ---------------------------------------------------
+	
+	// document.addEventListener('scrollend', () => {
+	// 	if(abort) return;
+	// 	scrollend = true;
+	// 	if(scroll) { boxes.forEach(box => { box.style.opacity = .8 }) }
+	// 	timeoutId = setTimeout(() => {
+	// 		const intervalId = setInterval(() => {
+	// 			scrollEnds.push(scrollY);
+	// 			// console.log(scrollEnds); //* log *** //
+	// 			displayMsg();
+	// 			if(scrollEnds.length > 2) {
+	// 				if(scrollEnds[0] === scrollEnds[1] 
+	// 					&& scrollEnds[0] === scrollEnds[2]) {
+	// 					clearInterval(intervalId);
+	// 					resetAll();
+	// 				} else { scrollEnds = []; clearInterval(intervalId); duration = 100 }
+	// 			}
+	// 			if(abort) { clearInterval(intervalId) }
+	// 		}, 1000);
+	// 	}, duration);
+	// });
+	
+	//* safari version ---------------------------------------------------
+
+		let timeout;
+	function onScrollEnd() {
+		onscroll = () => {
+			clearTimeout(timeout);
+			timeout = setTimeout(() => {
+				if(abort) return;
+				scrollend = true;
+				if(scroll) { boxes.forEach(box => { box.style.opacity = .8 }) }
+				timeoutId = setTimeout(() => {
+					const intervalId = setInterval(() => {
+						scrollEnds.push(scrollY);
+						// console.log(scrollEnds); //* log *** //
+						displayMsg();
+						if(scrollEnds.length > 2) {
+							if(scrollEnds[0] === scrollEnds[1] 
+								&& scrollEnds[0] === scrollEnds[2]) {
+								clearInterval(intervalId);
+								resetAll();
+							} else { scrollEnds = []; clearInterval(intervalId); duration = 100 }
+						}
+						if(abort) { clearInterval(intervalId) }
+					}, 1000);
+				}, duration);
+			}, 300);
+		}
+	} onScrollEnd();
+
+//* -----------------------------------------------------------------------------------
 
 	function resetAll() {
 		scrollEnds = [];
@@ -426,13 +459,13 @@ import {console_color,console_red,console_orange,console_yellow,console_green,
 	function displayMsg() {
 		if(scroll) {
 			if(scrollEnds[0] || scrollEnds[0] === 0) {
-				nth1.textContent = 'FUCK';
+				nth1.textContent = 'WHAT';
 			}
 			if(scrollEnds[0] === scrollEnds[1]) {
 				nth2.textContent = 'THE'
 			} 
 			if(scrollEnds[0] === scrollEnds[1] && scrollEnds[0] === scrollEnds[2]) {
-				nth3.textContent = 'WORLD';
+				nth3.textContent = 'FUCK';
 			} 
 		}
 	}
